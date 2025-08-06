@@ -18,6 +18,7 @@ const {
     MapTypes,
     transparentFill,
     regularColorSteps,
+    LegendPosition,
     Themes,
 } = lcjs
 
@@ -88,6 +89,10 @@ const chart = lc
     .ChartXY({
         // theme: Themes.darkGold
         container: divOverlay,
+        legend: { 
+            position: LegendPosition.RightCenter,
+            backgroundVisible: true,
+        },
     })
     .setUserInteractions(undefined)
     .setTitle('Loading example data ...')
@@ -125,13 +130,15 @@ const textBox = chart
 
 // Add PointSeries
 const covidVaccinated = chart
-    .addPointLineAreaSeries({
-        dataPattern: null,
-        sizes: true,
-        lookupValues: true,
-        ids: true,
+    .addPointSeries({
+        schema: {
+            x: { pattern: null },
+            y: { pattern: null },
+            lookupValue: { pattern: null },
+            size: { pattern: null },
+            id: { pattern: null },
+        },
     })
-    .setStrokeStyle(emptyLine)
     .setPointerEvents(false)
     .setName('Vaccination coverage')
     .setPointFillStyle(palette)
@@ -141,9 +148,6 @@ const covidVaccinated = chart
 fetch(new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + `examples/assets/1103/data.json`)
     .then((r) => r.json())
     .then((data) => {
-        // Set legendBox
-        const legend = chart.addLegendBox().add(covidVaccinated)
-
         // Start TimeInterval
         startBubbling(covidVaccinated, data)
 
@@ -188,10 +192,10 @@ function startBubbling(bubbles, data) {
     })
 
     chart.setCursorFormatting((_, hit) => {
-        const country = data.countries[hit.id]
+        const country = data.countries[hit.sample.id]
         return [
             [{ component: hit.series, rowFillStyle: chart.getTheme().cursorResultTableHeaderBackgroundFillStyle }],
-            [country],
+            [country.name],
             [`Vaccinated once:`],
             [`${hit.lookupValue.toFixed(2)}% of population`],
         ]
@@ -220,7 +224,6 @@ function changeData(country, covidVaccinated, vacc100, i) {
         lookupValue: vacc100,
         size: Math.max(3, vacc100 / 2),
         id: i,
-        // country: country.name, // (!)
     })
 }
 
