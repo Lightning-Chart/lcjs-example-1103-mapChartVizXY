@@ -118,8 +118,8 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2025. All rights reserved.
 
 
-[Point Shape]: https://lightningchart.com/js-charts/api-documentation/v8.0.1/enums/PointShape.html
-[PalettedFill]: https://lightningchart.com/js-charts/api-documentation/v8.0.1/classes/PalettedFill.html
-[MapTypes]: https://lightningchart.com/js-charts/api-documentation/v8.0.1/variables/MapTypes.html
-[transparentFill]: https://lightningchart.com/js-charts/api-documentation/v8.0.1/variables/transparentFill.html
+[Point Shape]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/enums/PointShape.html
+[PalettedFill]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/PalettedFill.html
+[MapTypes]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/variables/MapTypes.html
+[transparentFill]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/variables/transparentFill.html
 
